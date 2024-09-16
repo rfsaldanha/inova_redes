@@ -16,9 +16,10 @@ out_all_proc <- od_all_proc |>
 
 # Example
 out_all_proc |>
-  filter(munic_res == 110001) |>
+  filter(munic_res == 420540) |>
   ggplot(aes(x = dt_inter, y = out_freq)) +
-  geom_line(stat = "identity")
+  geom_line(stat = "identity") +
+  labs(title = "Florianópolis")
 
 # Graph, all time
 g_all <-  od_all_proc |>
