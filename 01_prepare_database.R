@@ -11,6 +11,21 @@ duckdb_read_csv(
   name = "aih", 
   files = "../tb_aih_emergencias.csv",
   delim = ";", 
+  col.types = c(
+    munic_res = "INTEGER",
+    munic__mov = "INTEGER",
+    cnes = "INTEGER",
+    idade = "INTEGER",
+    sex = "VARCHAR",
+    dt_inter = "DATE",
+    dt_saida = "DATE",
+    diag_princ = "VARCHAR",
+    marca_uti = "VARCHAR",
+    raca_cor = "INTEGER",
+    proc_rea = "INTEGER",
+    munreslat = "DOUBLE",
+    munreslon = "DOUBLE"
+  ),
   header = TRUE, 
   na.strings = "NA"
 )

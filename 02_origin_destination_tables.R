@@ -3,7 +3,7 @@ library(tidyverse)
 library(duckdb)
 
 # Create database connection
-con <- dbConnect(duckdb(), dbdir = "aih.duckdb", read_only = FALSE)
+con <- dbConnect(duckdb(), dbdir = "aih.duckdb", read_only = TRUE)
 
 # AIH Table alias
 aih_tbl <- tbl(con, "aih")
