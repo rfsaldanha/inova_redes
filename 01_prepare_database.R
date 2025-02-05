@@ -30,6 +30,37 @@ duckdb_read_csv(
   na.strings = "NA"
 )
 
+# Import estimates data
+duckdb_read_csv(
+  conn = con, 
+  name = "estimativas", 
+  files = "../tb_emergencias_model_reduzido.csv",
+  delim = ";", 
+  col.types = c(
+    data = "DATE",
+    obs = "DOUBLE",
+    pred = "DOUBLE",
+    max = "DOUBLE",
+    min = "DOUBLE",
+    cod6 = "INTEGER",
+    tipo = "DOUBLE",
+    uf = "INTEGER",
+    anomes = "INTEGER",
+    regional = "INTEGER",
+    marcaRS = "VARCHAR",
+    fl_inf = "VARCHAR",
+    id_prov = "INTEGER",
+    fl_max = "DOUBLE",
+    fl_pred = "DOUBLE",
+    perc_max = "DOUBLE",
+    perc_pred = "DOUBLE",
+    perc_min = "DOUBLE",
+    fl_min = "DOUBLE"
+  ),
+  header = TRUE, 
+  na.strings = "NA"
+)
+
 # Table alias
 aih_tbl <- tbl(con, "aih")
 
