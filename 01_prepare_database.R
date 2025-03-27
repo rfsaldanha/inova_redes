@@ -1,16 +1,17 @@
 # Packages
 library(tidyverse)
 library(duckdb)
+library(glue)
 
 # Create database connection
 con <- dbConnect(duckdb(), dbdir = "aih.duckdb", read_only = FALSE)
 
 # Import AIH csv
 duckdb_read_csv(
-  conn = con, 
-  name = "aih", 
+  conn = con,
+  name = "aih",
   files = "../tb_aih_emergencias.csv",
-  delim = ";", 
+  delim = ";",
   col.types = c(
     munic_res = "INTEGER",
     munic__mov = "INTEGER",
@@ -26,39 +27,24 @@ duckdb_read_csv(
     munreslat = "DOUBLE",
     munreslon = "DOUBLE"
   ),
-  header = TRUE, 
+  header = TRUE,
   na.strings = "NA"
 )
 
 # Import estimates data
-duckdb_read_csv(
-  conn = con, 
-  name = "estimativas", 
-  files = "../tb_emergencias_model_reduzido.csv",
-  delim = ";", 
-  col.types = c(
-    data = "DATE",
-    obs = "DOUBLE",
-    pred = "DOUBLE",
-    max = "DOUBLE",
-    min = "DOUBLE",
-    cod6 = "INTEGER",
-    tipo = "DOUBLE",
-    uf = "INTEGER",
-    anomes = "INTEGER",
-    regional = "INTEGER",
-    marcaRS = "VARCHAR",
-    fl_inf = "VARCHAR",
-    id_prov = "INTEGER",
-    fl_max = "DOUBLE",
-    fl_pred = "DOUBLE",
-    perc_max = "DOUBLE",
-    perc_pred = "DOUBLE",
-    perc_min = "DOUBLE",
-    fl_min = "DOUBLE"
-  ),
-  header = TRUE, 
-  na.strings = "NA"
+dbExecute(conn = con, "INSTALL postgres;")
+dbExecute(conn = con, "LOAD postgres;")
+dbExecute(
+  conn = con,
+  glue(
+    "CREATE TABLE mod_enviados AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_enviados');"
+  )
+)
+dbExecute(
+  conn = con,
+  glue(
+    "CREATE TABLE mod_recebidos AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_recebidos');"
+  )
 )
 
 # Table alias
