@@ -43,7 +43,51 @@ dbExecute(
 dbExecute(
   conn = con,
   glue(
+    "CREATE TABLE mod_enviados_mes AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_enviados_mes');"
+  )
+)
+dbExecute(
+  conn = con,
+  glue(
+    "CREATE TABLE mod_enviados_semana AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_enviados_semana');"
+  )
+)
+
+dbExecute(
+  conn = con,
+  glue(
+    "CREATE TABLE mod_munic_diario AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_munic_diario');"
+  )
+)
+dbExecute(
+  conn = con,
+  glue(
+    "CREATE TABLE mod_munic_mes AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_munic_mes');"
+  )
+)
+dbExecute(
+  conn = con,
+  glue(
+    "CREATE TABLE mod_munic_semana AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_munic_semana');"
+  )
+)
+
+dbExecute(
+  conn = con,
+  glue(
     "CREATE TABLE mod_recebidos AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_recebidos');"
+  )
+)
+dbExecute(
+  conn = con,
+  glue(
+    "CREATE TABLE mod_recebidos_mes AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_recebidos_mes');"
+  )
+)
+dbExecute(
+  conn = con,
+  glue(
+    "CREATE TABLE mod_recebidos_semana AS SELECT * FROM postgres_scan('host=localhost port=5432 user={Sys.getenv('psql_local_user')} password={Sys.getenv('psql_local_psw')} dbname=obs', 'inova', 'resul_mod_recebidos_semana');"
   )
 )
 
