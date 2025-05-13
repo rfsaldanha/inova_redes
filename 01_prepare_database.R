@@ -6,6 +6,9 @@ library(glue)
 # Create database connection
 con <- dbConnect(duckdb(), dbdir = "aih.duckdb", read_only = FALSE)
 
+# List current tables
+dbListTables(con)
+
 # Import AIH csv
 duckdb_read_csv(
   conn = con,
