@@ -9,6 +9,10 @@ con <- dbConnect(duckdb(), dbdir = "aih.duckdb", read_only = FALSE)
 # List current tables
 dbListTables(con)
 
+dbRemoveTable(con, "mod_enviados")
+dbRemoveTable(con, "mod_enviados_mes")
+dbRemoveTable(con, "mod_enviados_semanas")
+
 # Import AIH csv
 duckdb_read_csv(
   conn = con,
@@ -37,6 +41,8 @@ duckdb_read_csv(
 # Import estimates data
 dbExecute(conn = con, "INSTALL postgres;")
 dbExecute(conn = con, "LOAD postgres;")
+
+# Sent
 dbExecute(
   conn = con,
   glue(
@@ -56,6 +62,7 @@ dbExecute(
   )
 )
 
+# Local
 dbExecute(
   conn = con,
   glue(
@@ -75,6 +82,7 @@ dbExecute(
   )
 )
 
+# Received
 dbExecute(
   conn = con,
   glue(
