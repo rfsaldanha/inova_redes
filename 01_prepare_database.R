@@ -9,9 +9,9 @@ con <- dbConnect(duckdb(), dbdir = "aih.duckdb", read_only = FALSE)
 # List current tables
 dbListTables(con)
 
-dbRemoveTable(con, "mod_enviados")
-dbRemoveTable(con, "mod_enviados_mes")
-dbRemoveTable(con, "mod_enviados_semanas")
+# dbRemoveTable(con, "mod_enviados")
+# dbRemoveTable(con, "mod_enviados_mes")
+# dbRemoveTable(con, "mod_enviados_semana")
 
 # Import AIH csv
 duckdb_read_csv(
