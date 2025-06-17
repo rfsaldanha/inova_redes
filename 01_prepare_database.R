@@ -12,6 +12,12 @@ dbListTables(con)
 # dbRemoveTable(con, "mod_enviados")
 # dbRemoveTable(con, "mod_enviados_mes")
 # dbRemoveTable(con, "mod_enviados_semana")
+# dbRemoveTable(con, "mod_recebidos")
+# dbRemoveTable(con, "mod_recebidos_mes")
+# dbRemoveTable(con, "mod_recebidos_semana")
+# dbRemoveTable(con, "mod_munic_diario")
+# dbRemoveTable(con, "mod_munic_mes")
+# dbRemoveTable(con, "mod_munic_semana")
 
 # Import AIH csv
 duckdb_read_csv(
